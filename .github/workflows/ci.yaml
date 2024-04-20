@@ -9,6 +9,8 @@ jobs:
   build:
       runs-on: ubuntu-latest
       steps:
+      - uses: actions/checkout@v4
+      
       - name: Install Node
         uses: actions/setup-node@v4
         with:
@@ -24,13 +26,13 @@ jobs:
         id: venv-cache
         uses: actions/cache@v3
         with:
-          key: venv-${{ runner.os }}-${{ steps.setup-python.outputs.python-version}}-${{ hashFiles('pyproject.toml') }}
+          key: venv-${{ runner.os }}-${{ steps.setup-python.outputs.python-version}}-venv-${{ hashFiles('pyproject.toml') }}
           path: .venv
 
       - name: Cache Pre-Commit
         uses: actions/cache@v3
         with:
-          key: venv-${{ runner.os }}-${{ steps.setup-python.outputs.python-version}}-${{ hashFiles('.pre-commit-config.yaml') }}
+          key: venv-${{ runner.os }}-${{ steps.setup-python.outputs.python-version}}-pre-commit-${{ hashFiles('.pre-commit-config.yaml') }}
           path: ~/.cache/pre-commit
           
       - name: make install
