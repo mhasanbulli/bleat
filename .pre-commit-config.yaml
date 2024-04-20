@@ -6,7 +6,7 @@ repos:
     hooks:
       - id: ruff
         name: ruff
-        entry: .venv/bin/ruff chech --force-exclude
+        entry: .venv/bin/ruff check --force-exclude
         language: system
         types:
           - "python"
