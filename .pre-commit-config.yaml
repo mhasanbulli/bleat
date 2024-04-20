@@ -19,7 +19,7 @@ repos:
           - "python"
         require_serial: true
       - id: basedpyright
-        name: bpyright
+        name: basedpyright
         entry: .venv/bin/basedpyright
         pass_filenames: false
         language: system
