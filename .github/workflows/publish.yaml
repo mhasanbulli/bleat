@@ -1,4 +1,4 @@
-name: Upload Python Package
+name: Publish Distribution
 
 on:
   release:
@@ -8,8 +8,7 @@ permissions:
   contents: read
 
 jobs:
-  deploy:
-
+  publish:
     runs-on: ubuntu-latest
 
     steps:
