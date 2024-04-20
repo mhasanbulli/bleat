@@ -11,26 +11,26 @@ jobs:
       steps:
       - uses: actions/checkout@v4
       
-      - name: Install Node
+      - name: Install node
         uses: actions/setup-node@v4
         with:
           node-version: latest
 
-      - name: Setup Python
+      - name: Set up Python
         uses: actions/setup-python@v4
         id: setup-python
         with:
           python-version: '3.12'
 
-      - name: Cache Virtual Environment
+      - name: Cache virtual environment
         id: venv-cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           key: venv-${{ runner.os }}-${{ steps.setup-python.outputs.python-version}}-venv-${{ hashFiles('pyproject.toml') }}
           path: .venv
 
-      - name: Cache Pre-Commit
-        uses: actions/cache@v3
+      - name: Cache pre-commit
+        uses: actions/cache@v4
         with:
           key: venv-${{ runner.os }}-${{ steps.setup-python.outputs.python-version}}-pre-commit-${{ hashFiles('.pre-commit-config.yaml') }}
           path: ~/.cache/pre-commit
