@@ -25,7 +25,7 @@ clean:
 	rm -rf $(venv)
 
 ## create venv and install this package and hooks
-install: $(venv) node_modules $(if $(value CI),,install-hooks)
+install: $(venv) $(if $(value CI),,install-hooks)
 
 ## lint, format and type check
 check: export SKIP=test
@@ -34,10 +34,6 @@ check: hooks
 ## lint and format
 lint: export SKIP=pyright,test
 lint: hooks
-
-node_modules: package.json
-	npm install --no-save
-	touch node_modules
 
 ## run tests
 test: $(venv)
