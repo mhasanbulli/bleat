@@ -1,0 +1,40 @@
+{
+    "candidates": [
+        {
+            "content": {
+                "parts": [
+                    {
+                        "text": "## Protocol Class Example in Python\n\nProtocols in Python define a set of methods that a class must implement to be considered a valid type for that protocol. They provide a way to achieve structural subtyping without the need for explicit inheritance. Let\"s illustrate with an example:\n\n```python\nfrom typing import Protocol\n\nclass SupportsClose(Protocol):\n    def close(self) -> None:\n        ...\n\ndef close_all(closable_objects: list[SupportsClose]) -> None:\n    for obj in closable_objects:\n        obj.close()\n\nclass FileManager:\n    def __init__(self, filename: str) -> None:\n        self.filename = filename\n        self.file = open(filename, "w")\n\n    def close(self) -> None:\n        self.file.close()\n\nclass NetworkConnection:\n    def __init__(self, host: str, port: int) -> None:\n        # Imagine some initialization code here\n        pass\n\n    def close(self) -> None:\n        # Imagine some cleanup code here\n        pass\n\nfile_manager = FileManager("data.txt")\nconnection = NetworkConnection("localhost", 8080)\n\nclose_all([file_manager, connection])\n```\n\n**Explanation:**\n\n1. **`SupportsClose` Protocol:** This protocol defines a single method, `close()`, which takes no arguments and returns `None`. Any class implementing this method can be considered a valid type for `SupportsClose`.\n2. **`close_all` Function:** This function takes a list of objects that conform to the `SupportsClose` protocol and calls the `close()` method on each of them.\n3. **`FileManager` Class:** This class manages a file and implements the `close()` method to close the associated file object. Since it adheres to the `SupportsClose` protocol, it can be used with the `close_all` function.\n4. **`NetworkConnection` Class:** This class represents a network connection and also implements the `close()` method for cleanup. It also conforms to the `SupportsClose` protocol and can be used with `close_all`. \n5. **Usage:** We create instances of `FileManager` and `NetworkConnection` and pass them to the `close_all` function. The function successfully closes both objects, demonstrating the use of the protocol.\n\n**Key Points:**\n\n* Protocols use the `Protocol` class from the `typing` module.\n* They define methods but do not provide implementations.\n* Classes do not need to explicitly inherit from a protocol to conform to it; they only need to implement the required methods.\n* This allows for greater flexibility and code reuse.\n\nI hope this example clarifies the concept of protocol classes in Python. Feel free to ask if you have any further questions!\n"
+                    }
+                ],
+                "role": "model"
+            },
+            "finish_reason": 1,
+            "index": 0,
+            "safety_ratings": [
+                {
+                    "category": 9,
+                    "probability": 1,
+                    "blocked": False
+                },
+                {
+                    "category": 8,
+                    "probability": 1,
+                    "blocked": False
+                },
+                {
+                    "category": 7,
+                    "probability": 1,
+                    "blocked": False
+                },
+                {
+                    "category": 10,
+                    "probability": 1,
+                    "blocked": False
+                }
+            ],
+            "token_count": 0,
+            "grounding_attributions": []
+        }
+    ]
+}
